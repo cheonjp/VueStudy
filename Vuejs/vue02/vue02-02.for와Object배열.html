@@ -34,12 +34,58 @@
         Object Arrary를 바인딩하는 방법 학습.
         Object Arrary 예시)
         var objarray = [
-            { text: 'One', value: 'A' },
-            { text: 'Two', value: 'B' },
-            { text: 'Three', value: 'C' }
+        { text: 'One', value: 'A' },
+        { text: 'Two', value: 'B' },
+        { text: 'Three', value: 'C' }
         ];
 
     </xmp>
+
+    <script>
+        // var objarray = [
+        //     { text: 'One', value: 'A' },
+        //     { text: 'Two', value: 'B' },
+        //     { text: 'Three', value: 'C' }
+        // ];
+        
+        // var plus = {text:'Four', value:'D'}
+        // var edit =function(){
+        //     objarray.push(plus)
+        //     objarray[2].delete()
+        //     objarray[1].text ="2"
+        //     objarray[1].value ="2"
+        //     objarray.search('one')
+        // }
+        // document.querySelector('body').textContent = edit()
+
+
+        objarray[objarray.length] = [{text:'Four', value:'D'},
+        objarray.push({text:'Four', value:'D'});
+        objarray[1].text ={text:'2',value:'2'}
+        objarray.splice(2,1)
+
+        var arrOne =[];
+        for(var i=0; i<objarray.length; i++){
+            var obj = objarray[i];
+            if(obj.text ==='One'){
+                arrOne[arrOne.length]=obj;
+            }else{
+
+            }
+        }
+
+        debugger
+        
+        var arrOne2 = objarray.filter(function(item,index)){
+            if(obj.text ==='One'){
+                return true;
+            }else{
+                return false
+            }
+        }
+        
+
+    </script>
 </body>
 
 </html>
