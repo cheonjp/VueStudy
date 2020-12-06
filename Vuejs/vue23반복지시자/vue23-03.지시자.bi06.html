@@ -14,13 +14,21 @@
 </head>
 
 <body>
-    <pre>
+    <pre id="app2">
 
       v-for 지시자를 사용하여 자신이 좋아하는 가수들을 출력하는 테이블을 작성하여 본다.
+      
+      . input 태그 3개를 추가 하고 "추가" 버튼을 클릭하면 해당 입력값을 이용하여 객체를 만들고
+        Object Array에 추가한다.
+
     </pre>
     <hr>
 
     <div id="app" class="col-md-10 offset-md-1">
+        <label for="">이름</label><input type="text" v-model:value="name">
+        <label for="">전화번호</label><input type="text" v-model:value="tel">
+        <label for="">주소</label><input type="text" v-model:value="address">
+        <button v-on:click="plus">추가</button>
         <table id="list" class="table-bordered">
             <thead>
                 <tr class="bg-warning text-white text-center">
@@ -42,10 +50,92 @@
     </div>
 
 
-    
+
 
 </body>
 
 </html>
 
 <!-- vue 플러그인 임포트   -->
+
+<!-- vue 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+    /* vue 플러그인 임포트 */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js">
+    /* JSX를 자바스크립트로 변환 */
+</script>
+<script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js">
+    /* vuex 플러그인 임포트 */
+</script>
+<script src="https://unpkg.com/axios/dist/axios.min.js">
+    /* axios 플러그인 임포트 */
+</script>
+<script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js">
+    /* vue 라우터 플러그인 임포트 */
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+    /* jQuery library */
+</script>
+<script>
+
+</script>
+<script>
+    var app1 = new Vue({
+
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            contacts: [{
+                    name: 'Mike',
+                    tel: "010-1122-4123",
+                    address: '150Ave'
+                },
+                {
+                    name: 'Nina',
+                    tel: "011-1422-4123",
+                    address: '212Ave'
+                },
+                {
+                    name: 'Henry',
+                    tel: "010-1721-4422",
+                    address: '4150Ave'
+                },
+            ],
+            name: 'this.$data.name',
+            tel: 'this.$data.tel',
+            address: 'this.#data.address',
+            i: [1, 2, 3]
+        },
+        //template: ``,
+        methods: {
+            plus: function (event) {
+                // console.log(event.target)
+                // this[4] = {name:'Anna', tel:"011-123-5123", address:"81-2Ave"}
+                // this.contacts.push(this[4])
+
+                var obj = {
+                    name: 'this.$data.name',
+                    tel: 'this.$data.tel',
+                    address: 'this.#data.address',
+                }
+                this.$set(this.$data.contacts, this.$data.contacts.length, obj)
+            }
+        },
+        components: {
+
+        },
+        computed: {
+
+        },
+        watch: {
+
+        },
+        mounted: function () {
+            console.log("mounted");
+        },
+        updated: function () {
+            console.log("updated");
+        },
+    });
+</script>
