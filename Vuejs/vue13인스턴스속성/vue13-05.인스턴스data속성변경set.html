@@ -27,7 +27,7 @@
 
         data 속성 주의 사항
             인스턴스나 컴포넌트의 data 속성의 값을 직접 바꾸면 화면에 rendering 이 되지 않는 문제 발생
-            즉, this.arr[0]=100; 과 같이 바꾸면 화면의 rendering 되지 않음.
+            즉, this.$data.arr[0]=100; 과 같이 바꾸면 화면의 rendering 되지 않음.
 
         어떻게 data 속성의 값을 바꾸어야 하나?
             data 속성의 값을 변경하려면 반드시 재할당으로 처리해야 한다.
@@ -110,4 +110,38 @@
 </html>
 
 <!-- vue 플러그인 임포트   -->
-
+<template lang="">
+    <div>
+        
+    </div>
+</template>
+<script>
+export default {
+    
+}
+</script>
+<style lang="">
+    
+</style>
+
+vue
+
+<script>
+    el:"#app",
+    data:{
+        arr:[1,2,3,4,5],
+    },
+    methods:{
+        change1: function(event){
+            this.$data(this.$data.arr,0,100);
+            conslole.log(event.target);
+            this.$data.arr[0]=100
+        },
+        change2: function(event){
+            console.log(event.target);
+            //this.$data.arr[1]=300;
+            this.$set(this.$data.arr, 1, 300);
+            console.log(this.$data.arr[0]);
+        },
+    }
+</script>
