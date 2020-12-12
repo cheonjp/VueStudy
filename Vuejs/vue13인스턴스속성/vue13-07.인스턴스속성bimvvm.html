@@ -48,21 +48,19 @@
 </script>
 
 <script>
+
     new Vue({
         /* edtmc^2w */
         el: "#my",
         data: {
-            message: "change message at mounted!!!",
-    
+            message:"Change message at mounted!!!"
         },
         //template: ``,
         methods: {
-            doClick: function(event){
-                console.log(event.target)
-                //this.$data.message = "change message when a button clicked!!!"
-                var time = new Date().toLocaleString()
-                this.$set(this.$data, "message", "change message when a button clicked!!!" + time)
-            }
+            doClick: function(e){
+                this.$set(this.$data,'message','Change message when a button clicked!!')
+            },
+    
         },
         components: {
     
@@ -75,16 +73,54 @@
         },
         mounted: function() {
             console.log("mounted");
-            console.log(this);
-            var self = this;
-            window.setTimeout(function(){
-                self.$set(self.$data, "message", "change message after 3 seconds!!!")
+            const button = this
+            window.setTimeout(function(e){
+                button.$data.message ='Change message after 3 seconds!!'
             },3000)
         },
-        
         updated: function() {
             console.log("updated");
         },
     });
+    
+    // new Vue({
+    //     /* edtmc^2w */
+    //     el: "#my",
+    //     data: {
+    //         message: "change message at mounted!!!",
+    
+    //     },
+    //     //template: ``,
+    //     methods: {
+    //         doClick: function(event){
+    //             console.log(event.target)
+    //             //this.$data.message = "change message when a button clicked!!!"
+    //             var time = new Date().toLocaleString()
+    //             this.$set(this.$data, "message", "change message when a button clicked!!!" + time)
+    //         }
+    //     },
+    //     components: {
+    
+    //     }, 
+    //     computed: {
+    
+    //     },
+    //     watch: {
+    
+    //     },
+    //     mounted: function() {
+    //         console.log("mounted");
+    //         console.log(this);
+    //         var self = this;
+    //         window.setTimeout(function(){
+    //             self.$set(self.$data, "message", "change message after 3 seconds!!!")
+    //         },3000)
+    //     },
+        
+    //     updated: function() {
+    //         console.log("updated");
+    //     },
+    // });
+    
     
 </script>

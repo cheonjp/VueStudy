@@ -135,7 +135,7 @@ export default {
 <script>
     
 </script>
-
+<!-- 
 <script>
     el:"#app",
     data:{
@@ -197,4 +197,45 @@ new Vue({
         console.log("updated");
     },
 });
+</script> -->
+
+<script>
+    new Vue({
+        /* edtmc^2w */
+        el: "#app",
+        data: {
+            arr: [100, 2,3,4,5]
+        },
+        //template: ``,
+        methods: {
+            change1: function(e){
+                Vue.set(this.$data,'arr','1002345')
+            },
+            change2: function(e){
+                this.$set(this.$data,'arr','100, 300')
+            },
+            change3: function(e){
+                this.$data['arr'] ='451235'
+            },
+            change4: function(e){
+                this.$data.arr = '5717631'
+            }
+        },
+        components: {
+    
+        }, 
+        computed: {
+    
+        },
+        watch: {
+    
+        },
+        mounted: function() {
+            console.log("mounted");
+        },
+        updated: function() {
+            console.log("updated");
+        },
+    });
+    
 </script>
