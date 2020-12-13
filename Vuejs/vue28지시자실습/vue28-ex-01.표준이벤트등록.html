@@ -67,12 +67,12 @@
         </xmp>
         <ul>
             <li>
-                <a class="image3" v-on:click="dogImg" href="../images/image3.jpg">
+                <a class="image3" href="../images/image3.jpg" v-on:click="imageClick">
                     강아지 사진
                 </a>
             </li>
             <li>
-                <a class="image3"  v-on:click="dogImg" href="../images/image4.jpg">
+                <a class="image3" href="../images/image4.jpg" v-on:click="imageClick">
                     고양이 사진
                 </a>
             </li>
@@ -86,12 +86,12 @@
             이미지에 mouseover 와 mouseout 이벤트를 핸들러를 작성하시오.
             mouseover 이벤트를 핸들러 ==> imageover
             mouseout 이벤트를 핸들러 ==> imageout
-            
+
             이미지 위에 마우스를 내리면(mouseout ) ==> ../images/but1.gif , ../images/img_swap_off.png
             이미지 위에 마우스를 올리면(mouseover) ==> ../images/but2.gif , ../images/img_swap_on.png
         </xmp>
-        <img v-bind:src="img_but1" id="but1" />
-        <img v-bind:src="img_swap" id="img-swap" />
+        <img v-bind:src="img_but1" id="but1" v-on:mouseover="imageover" v-on:mouseout="imageout" />
+        <img v-bind:src="img_swap" id="img-swap" v-on:mouseover="imageover" v-on:mouseout="imageout" />
         <hr />
 
         <xmp>
@@ -100,8 +100,11 @@
             span에 mouseup 이벤트 핸들러를 작성하시오. ==> spanmouseup. background-color를 pink로 설정
             span에 mouseout 이벤트 핸들러를 작성하시오. ==> spanmouseout. background-color를 red로 설정
         </xmp>
-        <span>
-        </span>
+
+        on ===> v-on:
+        <span v-on:mouseover="spanmouseover" v-on:mousedown="spanmousedown" v-on:mouseup="spanmouseup"
+            v-on:mouseout="spanmouseout"></span>
+
         <span>
         </span>
         <span>
@@ -112,12 +115,12 @@
             select 에 change 이벤트 핸들러를 작성하시오.
             change 이벤트 핸들러: selectchange
         </xmp>
-        <select id="sel">
+        <select id="sel" v-on:change="selectchange">
             <option value="../images/strawberry.gif">딸기</option>
             <option value="../images/banana.gif">바나나</option>
             <option value="../images/apple.gif" selected>사과</option>
         </select>
-        
+
         <img id="img" v-bind:src="img_select" />
         <hr />
 
@@ -131,9 +134,9 @@
         <hr />
 
     </div>
-    
 
-    
+
+
 </body>
 
 </html>
@@ -148,38 +151,101 @@
 <script src="https://unpkg.com/vue-router@3.1.6/dist/vue-router.js"> /* vue 라우터 플러그인 임포트 */</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
 <script>
-    
+
 </script>
 <script>
     new Vue({
         /* edtmc^2w */
         el: "#app",
         data: {
-            
+            img_image3: null,
+            img_but1: "../images/but1.gif",
+            img_swap: "../images/but2.gif",
+            img_select: null,
+
         },
         //template: ``,
         methods: {
-            dogImg: function(event){
+            imageClick: function (event) {
                 console.log(event.target)
-                var img2 = document.querySelector('#img2')
+                var href = event.target.href;
+                this.$data.img_image3 = href;
+                this.$set(this.$data, "img_image3", href);
+                debugger;
+                // 문제점. a 태그의 redirect발생.   
+                //어떻게 redirect 막을수 있는가> => 이벤트 취소 이용.
+                //              event.stopPropagation();
+                //            event.preventDefault();
+            },
+            imageover: function (event) {
+                console.log(event.target)
+                // event.target.id ===> but1
+                var id = event.target.id;
+                if (id === "but1") {
+                    //this.$data.img_but1 = "../images/but2.gif";
+                    this.$set(this.$data, "img_but1", "../images/but2.gif")
+                } else {
+                    //this.$set(this.$data,"img_swap","../img_swap_on.png")
+                    this.$set(this.$data, "img_swap", "../images/img_swap_on.png")
+                }
+            },
+            imageout: function (event) {
+                console.log(event.target)
+                // event.target.id ===> but1
+                var id = event.target.id;
+                if (id === "but1") {
+                    //this.$data.img_but1 = "../images/but2.gif";
+                    this.$set(this.$data, "img_but1", "../images/but1.gif")
+                } else {
+                    //this.$set(this.$data,"img_swap","../img_swap_on.png")
+                    this.$set(this.$data, "img_swap", "../images/img_swap_off.png")
+                }
+            },
+
+            spanmouseover: function (event) {
+                console.log(event.target);
+                //event.target.style ="background-color:yellow";
+                event.target.style.backgroundColor = "yellow"
+            },
+            spanmousedown: function (event) {
+                console.log(event.target)
+                //event.target.style="background-color:yellow"
+                event.target.style.backgroundColor = "blue"
+
+            },
+            spanmouseup: function (event) {
+                console.log(event.target)
+                //event.target.style="background-color:yellow"
+                event.target.style.backgroundColor = "pink"
+            },
+            spanmouseout: function (event) {
+                console.log(event.target)
+                //event.target.style="background-color:yellow"
+                event.target.style.backgroundColor = "red"
+            },
+            selectchange: function(event){
+                console.log(event.target)
+                var value = event.target.value; // selected 값이다
+                this.$set(this.$data, "img_select", value)
+                
             }
+
         },
         components: {
-    
-        }, 
+
+        },
         computed: {
-    
+
         },
         watch: {
-    
+
         },
-        mounted: function() {
+        mounted: function () {
             console.log("mounted");
         },
-        updated: function() {
+        updated: function () {
             console.log("updated");
         },
     });
-    
-</script>
 
+</script>
