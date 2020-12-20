@@ -4,13 +4,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"> /* jQuery library */</script>
     <title>Document</title>
 </head>
 
 <body>
     <xmp>
-        jQueyry를 사용하여 "Hello, jQery!!!!" 를 출력한다.
+        jQueyry를 사용하여 "Hello, jQuery!!!!" 를 출력한다.
     </xmp>
     <hr />
 
@@ -18,14 +17,14 @@
         <p></p>
         <button>click me</button>
     </div>
-
-    <script>
-        
-        $("#app>button").on("click",function(){
-            $("#app p").html("Hello world")
-        })
-    </script>
     
 </body>
 
 </html>
+<script src="../jquery-3.4.1.js"></script>
+<script>
+    $("#app>p").text("Hello, jQery");
+    $("#app>button").on("click", function(event){
+        alert("hi")
+    });
+</script>
